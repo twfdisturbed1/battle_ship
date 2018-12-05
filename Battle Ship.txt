@@ -1,0 +1,39 @@
+Battleship
+Areas of focus
+TDD
+Object oriented
+Expectations
+You are building a playable game of battleship
+We want both a command line version (first)and a web version based on  one backend.
+* Beginner = 12x12 grid, 2-unit boat, 3-unit boat, 4-unit boat, 5-unit boat
+* Intermediate = 24x24 grid, 2-unit boat, 3-unit boat, 4-unit boat, 5-unit boat
+* Advanced = 36x36 grid, 2-unit boat, 3-unit boat, 4-unit boat, 5-unit boat
+Allow player to choose their level of play 
+Ask player to enter coordinates for ships Example A1,A3
+Note
+* Ships cannot wrap around the board
+* Ships cannot overlap
+* Ships can be laid horizontally or vertically
+* Coordinates must correspond to the first and last units of the ship. (IE: You can’t place a two unit ship at "A1 A3")
+Game flow
+Once ships are laid out it is time to move on to the player shoot sequence
+The game should show the player a map with coordinates listed on top and side of grid
+Ask the player to make a guess of the opponents ships
+* If the coordinate has already been shot at, reject the guess and ask them to shoot again
+* If the coordinate misses the opponent ships, mark it with an O on the map.
+* If the coordinate "hits" an opponent ship, mark it with an H on the map and enter the Hit Ship sequence below
+Then switch to the enemy shoot sequence
+Example Where XX and YYY represent the player’s ships.
+* The computer player randomly selects a location which has not been shot at and shoots at it.
+* If the shot misses the player ships, mark it with a M on the map.
+* If the shot "hits" a player ship, mark it with an H on the map and enter the Hit Ship sequence
+Then move to the Player Shoots sequence.
+Hit Ship Sequence
+* If the hit did not sink the ship, tell them that they hit an enemy ship
+* If the hit sunk the ship, tell them they sunk it and the size of the ship.
+* If the hit sunk the ship and it was the last enemy ship, then enter the End Game sequence
+End Game Sequence
+When either the player or computer wins the game…
+* Output a sorry/congratulations message
+* Output how many shots it took the winner to sink the opponent’s ships
+* Output the total time that the game took to play
