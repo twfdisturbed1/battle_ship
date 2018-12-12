@@ -1,5 +1,5 @@
 class Ship
-attr_accessor :size, :name
+attr_accessor :size, :name, :hp, :icon
     def initialize(size, name, hp, icon)
         @size = size
         @name = name
@@ -40,6 +40,12 @@ attr_accessor :size, :name
       p @name + " Ship is Destroyed "
       end  
     end
+
+    def location
+    @column = column
+    @row = row
+    end
+            
 
     def info
         @name +  " Ship size is " + @size.to_s + " Ships Hp is  " + @hp.to_s
