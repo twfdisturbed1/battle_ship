@@ -44,10 +44,9 @@ end
 # 		end
 # 	end
 # end
-
-# puts "Whats your Name ? ".colorize(:red)
-# player_name = gets.chomp.capitalize
-# p player_name
+puts "Whats your Name ? ".colorize(:red)
+player_name = gets.chomp
+p player_name
 
 size = 0
     puts "pick 1 or 2 or 3 for board size"
@@ -94,7 +93,42 @@ battleship_2 = Ship.new(5, "Battleship ", 5, "B", 5)
 
 turn = 0
 
+# p_one_input_one = 0
+# p_one_input_two = 0
+# puts "place your ships".colorize(:blue)
+# puts "Destroyer".colorize(:red)
+# counter = 0
+# loop do
+#     if counter == 2
+#         break 
+#         else
+#             puts "Pick column".colorize(:yellow)    
+#         p_one_input_one = gets.chomp.to_i
+#             if p_one_input_one > size and p_one_input_one >= 0
+#                 puts "please pick a valid column number".colorize(:yellow)
+#                 redo
+#                 else
+#                 puts "Pick Row #".colorize(:red)
+    
+#                 p_one_input_two = gets.chomp.to_i
+#                 if p_one_input_two > size and p_one_input_one >= 0
+#                     puts "please pick a valid row  number".colorize(:red)
+#                     redo
+#                     else
+#                         counter += 1
+#                 end
+#             end
+#             end
+#             if $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~'
+#     $new_board_player_one.board[p_one_input_one][p_one_input_two] = destroyer_1.icon
+#     $new_board_player_one.board[p_one_input_one][p_one_input_two + 1] = destroyer_1.icon
+#     counter = 2
+#                 else
+#                     counter -= 1
+#                 end
+# end
 counter = 0
+
 p_one_input_one = 0
 p_one_input_two = 0
 ship_orientation = " "
@@ -115,30 +149,30 @@ loop do
         break 
         else
 
-puts "Pick Row".colorize(:yellow)    
+puts "Pick column".colorize(:yellow)    
         p_one_input_one = gets.chomp.to_i
             if p_one_input_one > size and p_one_input_one >= 0
-                puts "please pick a valid Row number".colorize(:yellow)
+                puts "please pick a valid column number".colorize(:yellow)
                 redo
                 else
-                puts "Pick Column #".colorize(:red)
+                puts "Pick Row #".colorize(:red)
     
                 p_one_input_two = gets.chomp.to_i
                 if p_one_input_two > size and p_one_input_one >= 0
-                    puts "please pick a valid Column  number".colorize(:red)
+                    puts "please pick a valid row  number".colorize(:red)
                     redo
                     else
                         counter += 2
                 end
             end
             end
-            if $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "vertical" or $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "v"
+            if $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "horizontal" or $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "h"
     $new_board_player_one.board[p_one_input_one][p_one_input_two] = destroyer_1.icon
-    $new_board_player_one.board[p_one_input_one + 1][p_one_input_two] = destroyer_1.icon
+    $new_board_player_one.board[p_one_input_one][p_one_input_two + 1] = destroyer_1.icon
     counter = 2
-            elsif $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "horizontal" or $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "h"
+            elsif $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "vertical" or $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "v"
                 $new_board_player_one.board[p_one_input_one][p_one_input_two] = destroyer_1.icon
-                $new_board_player_one.board[p_one_input_one][p_one_input_two + 1] = destroyer_1.icon
+                $new_board_player_one.board[p_one_input_one + 1][p_one_input_two] = destroyer_1.icon
                 counter = 2 
                 else
                     counter -= 1
@@ -152,154 +186,90 @@ counter = 0
 puts "place your ships".colorize(:yellow)
 puts "Submarine".colorize(:black)
 loop do
-    puts "Would you like the ship Horizontal or Vertical"
-    ship_orientation = gets.chomp.to_s.downcase
-            if ship_orientation == "horizontal" or ship_orientation == "h" or ship_orientation == "vertical" or ship_orientation == "v"
-                break 
-            else
-                redo
-                puts "Invalid Choice please choose again"
-            end
-        end
-loop do
 if counter == 3
     break 
     else
-        puts "Pick Row".colorize(:yellow)    
+        puts "Pick column".colorize(:yellow)    
     p_one_input_one = gets.chomp.to_i
         if p_one_input_one > size and p_one_input_one >= 0
             puts "please pick a valid number".colorize(:yellow)
             redo
             else
-            puts "Pick Column #".colorize(:red)
+            puts "Pick Row #".colorize(:red)
 
             p_one_input_two = gets.chomp.to_i
             if p_one_input_two > size and p_one_input_one >= 0
                 puts "please pick a valid number".colorize(:red)
                 redo
                 else
-                    counter += 3
+                    counter += 1
             end
         end
         end
-        if $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "horizontal" or  ship_orientation == "h"
+        if $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~'
             $new_board_player_one.board[p_one_input_one][p_one_input_two] = submarine_1.icon
-            $new_board_player_one.board[p_one_input_one][p_one_input_two + 1] = submarine_1.icon
-            $new_board_player_one.board[p_one_input_one][p_one_input_two + 2] = submarine_1.icon
-        elsif  $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "vertical" or  ship_orientation == "v"
-            $new_board_player_one.board[p_one_input_one][p_one_input_two] = submarine_1.icon
-            $new_board_player_one.board[p_one_input_one + 1][p_one_input_two] = submarine_1.icon
-            $new_board_player_one.board[p_one_input_one + 2][p_one_input_two] = submarine_1.icon                 
-        else
+                        else
                             counter -= 1
                         end
     end
-    $new_board_player_one.board.each do|v|
-        p v
-    end
-
     counter = 0
     puts "place your ships".colorize(:yellow)
     puts "Cruiser".colorize(:orange)
-    loop do
-        puts "Would you like the ship Horizontal or Vertical"
-        ship_orientation = gets.chomp.to_s.downcase
-                if ship_orientation == "horizontal" or ship_orientation == "h" or ship_orientation == "vertical" or ship_orientation == "v"
-                    break 
-                else
-                    redo
-                    puts "Invalid Choice please choose again"
-                end
-            end
     loop do
 
 if counter == 4
     break 
     else   
-        puts "Pick Row".colorize(:yellow)    
+        puts "Pick column".colorize(:yellow)    
         p_one_input_one = gets.chomp.to_i
             if p_one_input_one > size and p_one_input_one >= 0
                 puts "please pick a valid number".colorize(:yellow)
                 redo
                 else
-                puts "Pick Column #".colorize(:red)
+                puts "Pick Row #".colorize(:red)
     
                 p_one_input_two = gets.chomp.to_i
                 if p_one_input_two > size and p_one_input_one >= 0
                     puts "please pick a valid number".colorize(:red)
                     redo
                     else
-                        counter += 4
+                        counter += 1
                 end
         end
     end
-    if $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and  ship_orientation == "horizontal" or ship_orientation == "h"
+    if $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~'
         $new_board_player_one.board[p_one_input_one][p_one_input_two] = cruiser_1.icon
-        $new_board_player_one.board[p_one_input_one][p_one_input_two + 1] = cruiser_1.icon
-        $new_board_player_one.board[p_one_input_one][p_one_input_two + 2] = cruiser_1.icon
-        $new_board_player_one.board[p_one_input_one][p_one_input_two + 3] = cruiser_1.icon
-    elsif $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and  ship_orientation == "vertical" or ship_orientation ==  "v"
-        $new_board_player_one.board[p_one_input_one][p_one_input_two] = cruiser_1.icon
-        $new_board_player_one.board[p_one_input_one + 1][p_one_input_two] = cruiser_1.icon
-        $new_board_player_one.board[p_one_input_one + 2][p_one_input_two] = cruiser_1.icon
-        $new_board_player_one.board[p_one_input_one + 3][p_one_input_two] = cruiser_1.icon
-
-    else
+                    else
                         counter -= 1
-     end
+                    end
 end
-$new_board_player_one.board.each do|v|
-    p v
-end
-
 counter = 0
 puts "place your ships".colorize(:yellow)
 puts "Battle Ship".colorize(:grey)
 loop do
-    puts "Would you like the ship Horizontal or Vertical"
-    ship_orientation = gets.chomp.to_s.downcase
-            if ship_orientation == "horizontal" or ship_orientation == "h" or ship_orientation == "vertical" or ship_orientation == "v"
-                break 
-            else
-                redo
-                puts "Invalid Choice please choose again"
-            end
-        end
-loop do
 if counter == 5
     break 
     else   
-        puts "Pick Row".colorize(:yellow)    
+        puts "Pick column".colorize(:yellow)    
         p_one_input_one = gets.chomp.to_i
             if p_one_input_one > size and p_one_input_one >= 0
                 puts "please pick a valid number".colorize(:yellow)
                 redo
                 else
-                puts "Pick Column #".colorize(:red)
+                puts "Pick Row #".colorize(:red)
     
                 p_one_input_two = gets.chomp.to_i
                 if p_one_input_two > size and p_one_input_one >= 0
                     puts "please pick a valid number".colorize(:red)
                     redo
                     else
-                        counter += 5
+                        counter += 1
                 end
         end
     end
-    if $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "horizontal" or ship_orientation ==  "h"
+    if $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~'
         $new_board_player_one.board[p_one_input_one][p_one_input_two] = battleship_1.icon
-        $new_board_player_one.board[p_one_input_one][p_one_input_two + 1] = battleship_1.icon
-        $new_board_player_one.board[p_one_input_one][p_one_input_two + 2] = battleship_1.icon
-        $new_board_player_one.board[p_one_input_one][p_one_input_two + 3] = battleship_1.icon
-        $new_board_player_one.board[p_one_input_one][p_one_input_two + 4] = battleship_1.icon
-    elsif $new_board_player_one.board[p_one_input_one][p_one_input_two] == '~' and ship_orientation == "vertical" or ship_orientation ==  "v"
-        $new_board_player_one.board[p_one_input_one][p_one_input_two] = battleship_1.icon
-        $new_board_player_one.board[p_one_input_one + 1][p_one_input_two] = battleship_1.icon
-        $new_board_player_one.board[p_one_input_one + 2][p_one_input_two] = battleship_1.icon
-        $new_board_player_one.board[p_one_input_one + 3][p_one_input_two] = battleship_1.icon
-        $new_board_player_one.board[p_one_input_one + 4][p_one_input_two] = battleship_1.icon
-
-    else
+                    else
                         counter -= 1
                     end
 end
@@ -332,16 +302,12 @@ $new_board_player_two.board.each do|v|
 end
 
 puts "enter two number the first is your column the second is your row".colorize(:green)
-turn = 0
+
 input_one = 0
 input_two = 0
-
-
 loop do
-puts " Pick Row"
-    input_one = gets.chomp.to_i
-puts "Pick Column"
-    input_two = gets.chomp.to_i
+input_one = gets.chomp.to_i
+input_two = gets.chomp.to_i
 
     $new_board_player_two.board[input_one.to_i][input_two.to_i]       
         if $new_board_player_two.board[input_one][input_two] == '~'

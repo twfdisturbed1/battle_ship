@@ -1,10 +1,17 @@
+require 'colorize'
 class Ship
-attr_accessor :size, :name, :hp, :icon
-    def initialize(size, name, hp, icon)
+attr_accessor :size, :name, :hp, :icon, :length
+    def initialize(size, name, hp, icon, length)
         @size = size
         @name = name
         @hp = hp
         @icon = icon
+        @length = length
+        # @orientation = ship_orientation
+    end
+    
+    def length
+        @length
     end
 
     def size 
@@ -14,6 +21,12 @@ attr_accessor :size, :name, :hp, :icon
     def icon
         @icon
     end
+
+    # def ship_orientation
+    #     @orientation
+    # end
+
+    # def set_ship_orientation
 
     def set_icon=(icon_letter)
         @icon = icon_letter
@@ -32,10 +45,11 @@ attr_accessor :size, :name, :hp, :icon
     end
 
     def hit
-      @name +  " Direct Hit " + "ship size is " + @size.to_s
+    #   @name +  " Direct Hit " + "ship size is " + @size.to_s
       if @hp >= 1
       @hp =  @hp - 1
-      @name + " Takes a hit " + " Hp is down to " + @hp.to_s
+      puts"Direct Hit !!!"
+    #   @name + " Takes a hit " + " Hp is down to " + @hp.to_s
       else
       p @name + " Ship is Destroyed "
       end  
@@ -60,8 +74,4 @@ attr_accessor :size, :name, :hp, :icon
     end
 end
 
-destroyer = Ship.new(2, "Destroyer", 2, "D")
-submarine = Ship.new(3, "Submarine", 3, "S")
-cruiser = Ship.new(4, "Cruiser", 4, "C")
-battleship = Ship.new(5, "Battleship ", 5, "B")
 
