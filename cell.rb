@@ -1,28 +1,41 @@
-require_relative "ship.rb"
-class Cell
+require_relative 'ship.rb'
+class Cell     
+    attr_reader :name, :ship, :size, :coordinates, :content, :status, :icon
     def initialize()
-        @contents = "~"
-        @coordinates = coordinates
         @status = "open"
+        @content = "~~ " 
+        @size = size 
+        @ship = ship
+        @name = name
+        @icon = name
+        
     end
 
-    def to_s
-        @contents == "~" ? @contents : @contents.name
+    def if_hit()
+        if @content.class == Ship
+            @content.take_a_hit() 
+            @status = "X" 
+        elsif @content == "~~ "
+           @status = "O"
+        end
     end
-
-    def occupy(ship)
-        @contents = ship
-        @status = "occupied"
-    end
-
-    def annex(ship)
-        @status = "occupied"
+    
+    def take(ship)
+        @content = ship
+            @status = "taken"
     end
 
     def content()
-        @contents
+        @content
     end
-    attr_reader :status
-    attr_reader :contents
-    attr_reader :coordinates
+
+    def to_s()
+        if @status == "open"
+            return "~~ "
+        elsif @status == "taken"
+            return @content.name
+        end
+        "(#{@status})"
+
+    end
 end

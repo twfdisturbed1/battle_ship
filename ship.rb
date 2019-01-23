@@ -1,32 +1,36 @@
-require 'colorize'
 class Ship
-attr_accessor :size, :name, :hp, :icon, :length
-    def initialize(size, name, hp, icon, length)
+attr_accessor :size, :name, :hp, :icon, :length, :orientation, :ship_status, :ship
+
+    def initialize(size, name)
         @size = size
         @name = name
-        @hp = hp
-        @icon = icon
-        @length = length
-        # @orientation = ship_orientation
+        @hp = 0
     end
     
     def length
         @length
     end
 
-    def size 
-        @size
-    end
-
     def icon
         @icon
     end
 
-    # def ship_orientation
-    #     @orientation
-    # end
+    def type_of_ship()
+        return @name
+    end
 
-    # def set_ship_orientation
+    def size_of_ship()
+        return @size
+    end
+
+    def hitter()
+        return @hp
+    end
+
+
+    def set_ship_orientation=(set_ship_orientation)
+        @orientation = set_ship_orientation
+    end
 
     def set_icon=(icon_letter)
         @icon = icon_letter
@@ -44,34 +48,25 @@ attr_accessor :size, :name, :hp, :icon, :length
         @name = title
     end
 
-    def hit
-    #   @name +  " Direct Hit " + "ship size is " + @size.to_s
-      if @hp >= 1
-      @hp =  @hp - 1
-      puts"Direct Hit !!!"
-    #   @name + " Takes a hit " + " Hp is down to " + @hp.to_s
-      else
-      p @name + " Ship is Destroyed "
-      end  
-    end
-
     def location
     @column = column
     @row = row
     end
             
-
     def info
         @name +  " Ship size is " + @size.to_s + " Ships Hp is  " + @hp.to_s
       end
 
-    def hp 
-        @hp
+    def take_a_hit()
+        @hp += 1
+        if @hp == @size
+            return "#{name.capitalize} was Destroyed"
+        else
+            return "You hit a ship!"
+        end
     end
 
-    def set_hp=(health)
-        @hp = health
-    end
+
 end
 
 
