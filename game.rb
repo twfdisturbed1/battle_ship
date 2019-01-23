@@ -64,6 +64,13 @@ def show_board(o)
     end
 end
 
+def hit_or_miss(new_board_cpu, replyrow, replycol)
+    if new_board_cpu.board[replyrow.to_i][replycol.to_i].content.class == Ship
+        return new_board_cpu.board[replyrow.to_i][replycol.to_i].content.ship_status
+    else
+        return "Miss!"
+    end
+end
 
 def end_game(new_board, new_board_cpu)
     player_place = 0
@@ -122,18 +129,16 @@ end
         new_board.board.each do |row|
             row.each do |cell|
                 while true
-                    puts "what row would you like to fire at?"; replyrow = gets.chomp.to_i
-                    puts "what column would you like to fire at?"; replycol = gets.chomp.to_i
-                    p replyrow
-                    p replycol
+                    puts "what row would you like to fire at?"; replyrow = gets.chomp
+                    puts "what column would you like to fire at?"; replycol = gets.chomp
                     if replyrow.gsub(/\D/, "").length > 0 && replycol.gsub(/\D/, "").length > 0
                         if new_board_cpu.atk_cell(replyrow.to_i, replycol.to_i) != 'invalid shot'
-                        p hit_or_miss(new_board_cpu,replyrow, replycol)
+                        p hit_or_miss(new_board_cpu, replyrow, replycol)
                         break
                     end
                 end
             end
-                # sleep(3)
+                #    sleep(3)
                 if end_game(new_board, new_board_cpu) != true
                     break
                 end
