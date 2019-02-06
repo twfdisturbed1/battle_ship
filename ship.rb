@@ -60,7 +60,7 @@ attr_accessor :size, :name, :hp, :icon, :length, :orientation, :ship_status, :sh
     def take_a_hit()
         @hp += 1
         if @hp == @size
-            return "#{name.capitalize} was Destroyed"
+            return "#{name} was Destroyed"
         else
             return "You hit a ship!"
         end

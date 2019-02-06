@@ -9,33 +9,33 @@
 # player2 = "CPU"
 # p player_name
 
-size = 0
-puts "pick 1 or 2 or 3 for board size"
-puts "1 is 12 by 12 "
-puts "2 is 24 by 24 "
-puts "3 is 36 by 36 "
-start = 0
-loop do
-start = gets.chomp.to_i
-if start == 1
-size = 12
-break
+# size = 0
+# puts "pick 1 or 2 or 3 for board size"
+# puts "1 is 12 by 12 "
+# puts "2 is 24 by 24 "
+# puts "3 is 36 by 36 "
+# start = 0
+# loop do
+# start = gets.chomp.to_i
+# if start == 1
+# size = 12
+# break
 
-elsif start == 2
-   size = 24
-break
+# elsif start == 2
+#    size = 24
+# break
 
-elsif start == 3
-    size = 36
-break
-else    
-puts "Pick a valid number"
-redo
-end
-end
-new_board = Board.new(size, "player1") 
-new_board_cpu = Board.new(size, "cpu") 
-cpu = Cpu.new(new_board_cpu, new_board)
+# elsif start == 3
+#     size = 36
+# break
+# else    
+# puts "Pick a valid number"
+# redo
+# end
+# end
+# new_board = Board.new(size, "player1") 
+# new_board_cpu = Board.new(size, "cpu") 
+# cpu = Cpu.new(new_board_cpu, new_board)
 
 def show_board(o)
     countertop = 0
@@ -162,5 +162,5 @@ end
     end
 end
     # win_func()
-    begin_game(new_board, new_board_cpu, cpu)
+    # begin_game(new_board, new_board_cpu, cpu)
     

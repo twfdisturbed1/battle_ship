@@ -6,9 +6,9 @@ class Board < Cell
     attr_accessor :size, :player1, :name, :end_point, :cell, :board, :player2, :start_point, :pos, :end_point
 def initialize(size, cell)
     if cell == "player1"
-        self.board = Array.new(size) {Array.new(size) {Cell.new}}
+        @board = Array.new(size) {Array.new(size) {Cell.new}}
     elsif cell == "cpu"
-        self.board = Array.new(size) {Array.new(size) {Cpucell.new}}
+        @board = Array.new(size) {Array.new(size) {Cpucell.new}}
     end
     @size = size
     @end_point = size - 1
@@ -31,7 +31,7 @@ end
 
 def atk_cell(row, col)
     if row < @size && col < @size && row >= 0 && col >= 0
-        self.board[row][col].if_hit()
+        @board[row][col].if_hit()
     else
         return "invalid shot"
     end
@@ -40,7 +40,7 @@ end
 
 def pick_open_cell()
     open_spot = []
-    self.board.each_with_index do |x, row|
+    @board.each_with_index do |x, row|
         x.each_with_index do |y, col|
             if y.status == "open" || y.status == "taken"
                 open_spot << [row, col]
@@ -72,9 +72,9 @@ def check_spot(ship, row, col, pos)
         # p self.board[row][col].content
         if self.board[row][col].content != "~~ "
            return false 
-        elsif pos == "horizontal" or pos == "h"
+        elsif pos == "horizontal" or pos == "h" or pos =="H" or pos == "Horizontal"
             col += 1
-        elsif pos == "vertical" or pos == "v"
+        elsif pos == "vertical" or pos == "v" or pos == "V" or pos== "Vertical"
             row += 1
         end 
     end
