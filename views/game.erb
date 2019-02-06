@@ -26,15 +26,27 @@
                 <tr>
                 <th> </th>
                 <%board.board.size.times do |v|%>
-                <th><%=v%></th>
+                <% if max_num == 35%>
+                <th><font size=2> <%=v%> </font></th>
+                <% else %>
+                <th> <%=v%></th>
+                <%end%> 
                 <%end%>
                 </tr>
            
                 <%board.board.each_with_index do |v, i|%>
                     <tr>
+                    <% if max_num == 35%>
+                    <th><font size=2><%=i%></font></th>
+                    <% else%>
                     <th><%=i%></th>
+                    <%end%>
                         <%v.each_with_index do |k, o|%>
-                            <th><%=k%></th>
+                <% if max_num == 35%>
+                <th><font color=#0000FF size=2> <%=k%> </font></th>
+                <% else %>
+                <th><font color=#0000FF> <%=k%></font></th>
+                <%end%> 
                         <%end%>
                     </tr>
                 <%end%>    
@@ -48,15 +60,27 @@
                 <tr>
                 <th> </th>
                 <%cpuboard.board.size.times do |v|%>
-                <th><%=v%></th>
+                <% if max_num == 35%>
+                <th><font size=2> <%=v%> </font></th>
+                <% else %>
+                <th> <%=v%></th>
+                <%end%> 
                 <%end%>
                 </tr>
            
                 <%cpuboard.board.each_with_index do |v, i|%>
                     <tr>
+                    <% if max_num == 35%>
+                    <th><font size=2><%=i%></font></th>
+                    <% else%>
                     <th><%=i%></th>
+                    <%end%>
                         <%v.each_with_index do |k, o|%>
-                            <th><%=k%></th>
+               <% if max_num == 35%>
+                <th><font color=#0000FF size=2> <%=k%> </font></th>
+                <% else %>
+                <th><font color=#0000FF> <%=k%></font></th>
+                <%end%> 
                         <%end%>
                     </tr>
                 <%end%>    
