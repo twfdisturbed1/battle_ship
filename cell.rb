@@ -1,13 +1,11 @@
 require_relative 'ship.rb'
 class Cell     
-    attr_reader :name, :ship, :size, :coordinates, :content, :status, :icon
+    attr_reader  :coordinates, :content, :status, :ship, :name
     def initialize()
         @status = "open"
         @content = "~~ " 
-        @size = size 
         @ship = ship
         @name = name
-        @icon = name
         
     end
 

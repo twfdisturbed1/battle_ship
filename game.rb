@@ -96,7 +96,7 @@ def end_game(new_board, new_board_cpu)
     elsif player_place == 14
         return "They Saken your Battle Ships "
     else 
-       return true
+       return ""
     end
 end
     
@@ -118,6 +118,7 @@ end
                 puts "Do you want your #{v} to be vertical or horizontal?"; replyvert = gets.chomp    
                 if new_board.main(Ship.new(v[-1].to_i,"(#{v[0]})"), replyrow, replycol, replyvert) != "Invalid Placement!"
                     system('cls')
+                    break
                     show_opp_board(new_board_cpu); show_board(new_board)
                     break
                 end

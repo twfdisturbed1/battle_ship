@@ -1,24 +1,34 @@
+
+         <link rel="stylesheet" type="text/css" href="css/stop_watch.css">
+
   <div class="grid">
-  <body onload="removeElement()">
     <div class="image">    
-      <form method="post" action="game">
-    <%max_num%>
+    <form method="post" action="game">
+ <%max_num%>
     <% max_num = board.board.size.to_i - 1%>
      <center>
             <font color="#000"><h3> Row coordinate</h3></font>
-                <input type="number" name="row" autofocus placeholder="Row" min="0" max="<%= max_num %>">
+                <input type="number" required name="row" autofocus placeholder="Row" min="0" max="<%= max_num %>">
                  <font color="#000"><h3>Column coordinate</h3></font>
-                <input type="number" name="col" placeholder="Column" min="0" max="<%= max_num %>">
-                 <font id="HV" color="#000"><h3>Horizontal or Vertical</h3></font>
-                <input type="text" name="pos" placeholder="Horizontal or Vertical"/>
-                <input type='hidden' name='ship_num' value='<%=ship_num%>' id="ship_num">
-                <font color="#000"><h1><%=err%></h1></font>
+                <input type="number"  required name="col" placeholder="Column" min="0" max="<%= max_num %>">
+                </br>
+                <div id="direction">
+                <font id="HV" color="#000"><h3>Horizontal or Vertical</h3></font>
+                <select id="pos" name="pos">
+                    <option id="pos" value="h">Horizontal</option>
+                    <option id= "pos" value="v">Vertical</option>
+                </select>
+                <input type='text' name='ship_num' value='<%=ship_num%>' id="value_s">
+                <font color="#000"><h1><%=err%></h1></font> 
+                </div>
+              
                 <br><br>
                 <button class=" button">Enter</button>
          
 
             </center>
         </form>
+   
    </div>
            <div align="center" class="nav"> 
                        <h2>Player Board</h2>
@@ -37,7 +47,7 @@
                 <%board.board.each_with_index do |v, i|%>
                     <tr>
                     <% if max_num == 35%>
-                    <th><font size=2><%=i%></font></th>
+                    <th><font size=2> <%=i%></font></th>
                     <% else%>
                     <th><%=i%></th>
                     <%end%>
@@ -45,7 +55,7 @@
                 <% if max_num == 35%>
                 <th><font color=#0000FF size=2> <%=k%> </font></th>
                 <% else %>
-                <th><font color=#0000FF> <%=k%></font></th>
+                <th><font color=#0000FF><%=k%></font></th>
                 <%end%> 
                         <%end%>
                     </tr>
