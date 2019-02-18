@@ -56,10 +56,10 @@ def err()
 end
 
 def check_location(ship, row, col, pos)
-    if pos == "horizontal" or pos == "h" or pos =="H" or pos == "Horizontal"
-        col + ship.size < board.length && (col < board.length && row < board.length) ? true : false
+    if pos == "horizontal"
+        col + ship.size < board.length + 1 && (col < board.length && row < board.length + 1) ? true : false
     elsif pos == "vertical" or pos == "v" or pos == "V" or pos == "Vertical"
-        row + ship.size < board.length && (col < board.length && row < board.length) ? true : false
+        row + ship.size < board.length + 1 && (col < board.length && row < board.length + 1) ? true : false
     else 
         err()
     end
@@ -67,12 +67,15 @@ def check_location(ship, row, col, pos)
 end
 
 def check_spot(ship, row, col, pos)
-    ship.size.times do 
-        p self.board[row][col].status
-        p self.board[row][col].content
-        if self.board[row][col].content != "~~ "
+    ship.size.times do
+        # p "Ship size is  #{ship.size}" 
+        # p "Col is #{col}"
+        # p "Row is #{row}"
+        # p self.board[row][col].status
+        # p self.board[row][col].content
+        if self.board[row][col].status != "open"
            return false 
-        elsif pos == "horizontal" or pos == "h" or pos =="H" or pos == "Horizontal"
+        elsif pos == "horizontal" 
             col += 1
         elsif pos == "vertical" or pos == "v" or pos == "V" or pos== "Vertical"
             row += 1

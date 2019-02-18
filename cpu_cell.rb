@@ -4,7 +4,7 @@ class Cpucell < Cell
        attr_reader :ship, :size, :coordinates, :content, :status
     def to_s()
         if @status == "open" || @status == "taken"
-            return "~~ "
+            return "~~"
         end
         "(#{@status})"
 

@@ -4,7 +4,7 @@ require_relative 'ship.rb'
 require_relative 'cell.rb'
 require_relative 'cpu.rb'
 require_relative "cpu_cell.rb"
-require_relative "game.rb"
+# require_relative "game.rb"
 use Rack::Session::Pool
 
 get '/' do
@@ -67,25 +67,26 @@ get '/game' do
   shot = session[:shot_fire] || ""
   board = session[:board] 
   max_num = session[:max_num] 
+  cpu = session[:cpu]
   cpuboard = session[:cpuboard] 
   ship_num = session[:increase] || 0
   row = session[:row].to_i || 0
   col = session[:col].to_i || 0
   pos = session[:pos].to_s || ""
 
-  if session[:err] != "Not a valid move"
-    board.main(session[:place_ship], row, col, pos) if pos != "" 
-  end
+  # if session[:err] != "Not a valid move" and ship_num <= 3
+  #   board.main(session[:place_ship], row, col, pos) if pos != "" 
+  # end
   
-  if shot == "Missle launched"
-    session[:cpu].deploy_opp_ships()
-  end
-
-  # if session[:increase] == 4
-  #   ship_num += 1
+  # if shot == "Missle launched"
+  #   session[:cpu].deploy_opp_ships()
   # end
 
-  erb :game, locals: {board: board, cpuboard: cpuboard, hitter: hitter, row: row, col: col, pos: pos, ship_num: ship_num, err: session[:err], shot_error: session[:shot_error], max_num: session[:max_num]}
+  if session[:increase] == 4
+    ship_num += 1
+  end
+
+  erb :game, locals: {board: board, cpuboard: cpuboard, hitter: hitter, row: row, col: col, pos: pos, ship_num: ship_num, err: session[:err], shot_error: session[:shot_error], max_num: session[:max_num], cpu: cpu}
 end
 
 post '/game' do
@@ -93,24 +94,37 @@ post '/game' do
   session[:shot_fire] = ""
   session[:shot_error] = ""
   session[:ship_place_num]
+  # session[:cpu] = params[:cpu]
   session[:increase] = params[:ship_num].to_i
   session[:row] = params[:row]
   session[:col] = params[:col]
   session[:pos] = params[:pos]
   ships = [battle_ship = Ship.new(5, "(B)"), cruiser = Ship.new(4, "(C)"), submarine = Ship.new(3, "(S)"), destroyer = Ship.new(2, "(D)")]
-  begin
+
   if session[:board].main(ships[session[:increase]],params[:row].to_i, params[:col].to_i, params[:pos].to_s) != "Not a valid move"
     session[:place_ship] = ships[session[:increase]]
     session[:increase] += 1
-    session[:shot_fire] = "Missle Launched" if session[:increase] == 4
+    p " Bill Session increase #{session[:increase]}"
+    p " Bill Session Board #{session[:board]}"
+    if session[:increase] == 2
+      session[:cpu].deploy_opp_ships()
+      session[:cpuboard].board.each do |v|
+        v.each do |x|
+          if x != "~~"
+        p "William space =  #{x.status}"
+          end
+        end
+      end
+
+    end
   else
     session[:err] = "Not a valid move"
   end
-end
+
 
 
   spot = session[:board].pick_open_cell()
-  if session[:increase] > 3
+  if session[:increase] > 4
     if session[:cpuboard].atk_cell(session[:row].to_i, session[:col].to_i) == "Not a valid move" 
       session[:board].atk_cell(spot[0], spot[1])
       p session[:hitter]

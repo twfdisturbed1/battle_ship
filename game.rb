@@ -116,7 +116,7 @@ end
                 puts "What row would you want to place the #{v}?"; replyrow = gets.chomp.to_i
                 puts "What column would you want to place the #{v}";replycol = gets.chomp.to_i
                 puts "Do you want your #{v} to be vertical or horizontal?"; replyvert = gets.chomp    
-                if new_board.main(Ship.new(v[-1].to_i,"(#{v[0]})"), replyrow, replycol, replyvert) != "Invalid Placement!"
+                if new_board.main(Ship.new(v[-1].to_i,"(#{v[0]})"), replyrow, replycol, replyvert) != "Not a valid move"
                     system('cls')
                     break
                     show_opp_board(new_board_cpu); show_board(new_board)
@@ -134,7 +134,7 @@ end
                     puts "what column would you like to fire at?"; replycol = gets.chomp
                     if replyrow.gsub(/\D/, "").length > 0 && replycol.gsub(/\D/, "").length > 0
                         if new_board_cpu.atk_cell(replyrow.to_i, replycol.to_i) != 'invalid shot'
-                        p hit_or_miss(new_board_cpu, replyrow, replycol)
+                        # p hit_or_miss(new_board_cpu, replyrow, replycol)
                         break
                     end
                 end

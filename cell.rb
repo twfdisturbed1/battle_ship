@@ -3,9 +3,9 @@ class Cell
     attr_reader  :coordinates, :content, :status, :ship, :name
     def initialize()
         @status = "open"
-        @content = "~~ " 
-        @ship = ship
-        @name = name
+        @content = "~~" 
+        # @ship = ship
+        # @name = name
         
     end
 
@@ -13,12 +13,14 @@ class Cell
         if @content.class == Ship
             @content.take_a_hit() 
             @status = "X" 
-        elsif @content == "~~ "
+        elsif @content == "~~"
            @status = "O"
         end
     end
     
     def take(ship)
+        @ship = ship
+        @name = ship.name    
         @content = ship
             @status = "taken"
     end
@@ -29,11 +31,11 @@ class Cell
 
     def to_s()
         if @status == "open"
-            return "~~ "
+            return "~~"
         elsif @status == "taken"
             return @content.name
         end
-        "(#{@status})"
+      
 
     end
 end
