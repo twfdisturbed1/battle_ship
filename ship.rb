@@ -28,7 +28,7 @@ attr_accessor :size, :name, :hp,  :message, :ship_status, :ship
         if @hp != @size
             @message = "Direct Hit !!"
         elsif @hp == @size 
-            @message  = "#{name} was Sunk!"
+            @message  = "#{ship} was Sunk!"
             return @message
         end
     end

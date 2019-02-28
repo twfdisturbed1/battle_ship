@@ -1,6 +1,6 @@
 require_relative 'ship.rb'
 class Cell     
-    attr_reader  :coordinates, :content, :status, :ship, :name
+    attr_reader  :coordinates, :content, :status, :name, :ship
     def initialize()
         @status = "open"
         @content = "~~" 
@@ -35,7 +35,7 @@ class Cell
         elsif @status == "taken"
             return @content.name
         end
-      
+      "#{@status}"
 
     end
 end

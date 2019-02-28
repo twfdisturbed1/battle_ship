@@ -34,7 +34,7 @@ function removeElement() {
 function goaway() {
   var ship_num = document.getElementById("value_s");
   var dir = document.getElementById("direction");
-  if (ship_num.value == 5 ){
+  if (ship_num.value >= 4 ){
     dir.style.display = "none"
   }
 }

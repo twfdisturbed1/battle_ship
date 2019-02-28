@@ -1,37 +1,20 @@
-
-        <body onload="removeElement(); changeText(); endGame();">  
-        <link rel="stylesheet" type="text/css" href="css/stop_watch.css">
-
-  <div class="grid">
+ <div class="grid">
     <div class="image">    
-    <form method="post" action="game">
  <%max_num%>
     <% max_num = board.board.size.to_i - 1%>
-     <center>
-            <font color="#000"><h3> Row coordinate</h3></font>
-                <input type="number" required name="row" autofocus placeholder="Row" min="0" max="<%= max_num %>">
-                 <font color="#000"><h3>Column coordinate</h3></font>
-                <input type="number"  required name="col" placeholder="Column" min="0" max="<%= max_num %>">
-                </br>
-                <div id="direction">
-                <font id="HV" color="#000"><h3>Horizontal or Vertical</h3></font>
-                <select id="pos" name="pos">
-                    <option id="pos" value="horizontal">Horizontal</option>
-                    <option id= "pos" value="v">Vertical</option>
-                </select>
-                
-                <input type='hidden' name='ship_num' value='<%=ship_num%>' id="value_s">
-                <font color="#000"><h1><%=err%></h1></font> 
-                </div>
-              
-                <br><br>
-                <button class=" button">Enter</button>
-         
+<center>
 
-            </center>
-         
-   
-   </div>
+            <font color="#000"><h3> Row Coordinates</h3></font>
+                <input type="number" form="fire_ship_stuff" required name="row" autofocus placeholder="Row" min="0" max="<%= max_num %>">
+                 <font color="#000"><h3>Column Coordinates</h3></font>
+                <input type="number" form="fire_ship_stuff" required name="col" placeholder="Column" min="0" max="<%= max_num %>">
+                </br>
+                </br>
+<form method="post" action="fire_shots" id="fire_ship_stuff">
+    <button class="button">Fire</button>
+</form>
+</center>
+ </div>
            <div align="center" class="nav"> 
                        <h2>Player Board</h2>
            <table id="mytable">
@@ -44,8 +27,7 @@
                 <th> <%=v%></th>
                 <%end%> 
                 <%end%>
-                </tr>
-           
+                </tr> 
                 <%board.board.each_with_index do |v, i|%>
                     <tr>
                     <% if max_num == 35%>
@@ -57,7 +39,7 @@
                 <% if max_num == 35%>
                 <th><font color=#0000FF size=2> <%=k%> </font></th>
                 <% else %>
-                <th><font color=#0000FF><%=k%></font></th>
+                <th><font color=#0000FF> <%=k%></font></th>
                 <%end%> 
                         <%end%>
                     </tr>
@@ -96,11 +78,11 @@
                         <%end%>
                     </tr>
                 <%end%>    
+
+                
             </table>            
 </div>
-
-
-            <div class="footer">
+         <div class="footer">
      <center>   <p> <font color="#000"> App by :</font> Twfdisturbed </p></center></div>       
     
 
