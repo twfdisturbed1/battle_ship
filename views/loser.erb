@@ -1,0 +1,48 @@
+<head>
+  <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+<style type="text/css">
+#sortBtn {
+    background: transparent;
+    outline: #3fb0ab;
+    border: 1px solid #3fb0ab;
+    padding: 5px 20px;
+    font-family: 'Roboto';
+    font-size: 2.9rem;
+    font-weight: 500;
+}
+
+#sortBtn:hover {
+    background: #3fb0ab;
+    color: #333;
+    background-image: linear-gradient(#ccc, #fff);
+}
+
+#delBtn {
+    background: transparent;
+    outline: #3fb0ab;
+    border: 1px solid #3fb0ab;
+    padding: 5px 20px;
+    font-family: 'Roboto';
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+</style>
+  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
+  <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+</head>
+
+<div class="grid">
+    <div align="center" class="image"> <h1>They Sunk your Battle Ships</h1>
+          <video id="my-video" class="video-js vjs-default-skin" width="640" height="480"
+        data-setup='{"controls" : true, "autoplay" : true, "preload" : "auto"}'>
+        <source src="videos/loser.mp4" type="video/mp4">
+    </video>
+<button onclick="location.href = '/size';" id="sortBtn" class="float-left submit-button" >New Game</button>
+    </div>
+
+    <div class="footer">
+     <center>   <p> <font color="#000"> App by :</font> Twfdisturbed </p></center>
+     </div>       
+    
+</div>
+  <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>

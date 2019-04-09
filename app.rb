@@ -4,6 +4,7 @@ require_relative 'ship.rb'
 require_relative 'cell.rb'
 require_relative 'cpu.rb'
 require_relative "cpu_cell.rb"
+# require_relative 'end_game.rb'
 # require_relative "game.rb"
 use Rack::Session::Pool
 
@@ -133,6 +134,7 @@ get '/fire_shots' do
   cpuboard = session[:cpuboard] 
   row = session[:row].to_i || 0
   col = session[:col].to_i || 0
+  
 
   erb :fire_shots, locals: {board: session[:board], cpuboard: session[:cpuboard], cpu: cpu, row: row, col: col, err: session[:err], shot_error: session[:shot_error], max_num: session[:max_num]}
 end
@@ -144,31 +146,71 @@ post '/fire_shots' do
   session[:col] = params[:col]
   session[:increase_ps] = params[:player_score].to_i
   session[:increase_cs] = params[:cpu_score].to_i
+  def end_game(board, cpuboard)
+    player_place = 0
+    cpu_place = 0
+    winner = " "
+    board.board.each do |row|
+        row.each do |cell|
+            if cell.status == "X"
+                player_place += 1
+            end
+        end
+    end
+
+    cpuboard.board.each do |row|
+        row.each do |cell|
+            if cell.status == "X"
+                cpu_place += 1
+            end
+        end
+    end
+
+    if cpu_place == 14
+      redirect '/winner'  
+      return  "A Winner is you! yes"
+        @winner = "A Winner is you!"
+     elsif player_place == 14
+      redirect '/loser'
+         return "They Saken your Battle Ships "
+         @winner = "They Saken your Battle Ships "
+        else 
+        return ""
+     end
+ end
+#   end_game(session[:board], session[:cpuboard])
+#  p session[:winner]
+#   if session[:winner] == "A Winner is you!" 
+#   redirect '/winner'
+#   elsif session[:winner] == "They Saken your Battle Ships "
+#     redirect '/loser'
+#   else
+#   end
   # p "row in fire_shots post are #{session[:row]} and columns are #{session[:col]}"
 # p session[:cpuboard].atk_cell(session[:row].to_i, session[:col].to_i)
-p "params in fire post #{params}"
+# p "params in fire post #{params}"
 
-      session[:board].board.each do |v|
-        v.each do |x|
-          if x.status == "X"
-        session[:increase_ps] += 1
-          end
-        end
-      end
+      # session[:board].board.each do |v|
+      #   v.each do |x|
+      #     if x.status == "X"
+      #   session[:increase_ps] += 1
+      #     end
+      #   end
+      # end
 
-      session[:cpuboard].board.each do |v|
-        v.each do |x|
-          if x.status == "O"
-        session[:increase_cs] += 1
-          end
-        end
-      end
-p session[:player_score]
-      if session[:player_score] == 14
-        redirect '/winner'
-      elsif session[:cpu_score] == 14
-        redirect '/loser'
-      end
+      # session[:cpuboard].board.each do |v|
+      #   v.each do |x|
+      #     if x.status == "O"
+      #   session[:increase_cs] += 1
+      #     end
+      #   end
+      # end
+# p session[:player_score]
+#       if session[:player_score] == 14
+#         redirect '/winner'
+#       elsif session[:cpu_score] == 14
+#         redirect '/loser'
+#       end
       
   spot = session[:board].pick_open_cell()
       if session[:cpuboard].atk_cell(session[:row].to_i, session[:col].to_i) != "Not a valid move" 
