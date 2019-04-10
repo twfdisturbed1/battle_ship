@@ -38,5 +38,5 @@ you will see two  maps with coordinates listed on top and side of grid.
 * If the hit sunk the ship, you will be told the ship was sunk.
 * If the hit sunk the ship and it was the last enemy ship, You will be redirected to a Winning scene.(Web Based Version)
 
-<b>WWhether you win or lose…</b>
+<b>Whether you win or lose…</b>
 * You will get a sorry/congratulations message
